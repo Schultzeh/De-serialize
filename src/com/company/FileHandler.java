@@ -6,17 +6,12 @@ import java.io.ObjectOutputStream;
 import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 
-    public class FileHandler {
+public class FileHandler {
 
-        public FileHandler() {
-
-        }
-
-
-        public static void writeFile(String path, Object serializableObject){
+        public static void writeFile(String path, Object serializableObject, StandardOpenOption ... options){
             try (ObjectOutputStream oos = new ObjectOutputStream(Files.newOutputStream(Paths.get(path)))) {
-                System.out.println("I writeFile");
                 oos.writeObject(serializableObject);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -25,7 +20,6 @@ import java.nio.file.Paths;
 
         public static Object readFile(String path){
             try (ObjectInputStream ois = new ObjectInputStream(Files.newInputStream(Paths.get(path)))) {
-                System.out.println("I readFile");
                 Object o = null;
                 try {
                     o = ois.readObject();
@@ -33,12 +27,9 @@ import java.nio.file.Paths;
                     e.printStackTrace();
                 }
                 return o;
-            }
-            catch (IOException e) {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
             return null;
         }
-
     }
-

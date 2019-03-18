@@ -9,25 +9,26 @@ import java.nio.file.Paths;
 
 public class FileHandlerNetwork {
 
-    public FileHandlerNetwork(){}
-
-    public static void sendFile(Object serializableObject, Socket socket){
-    try (ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream())){
-        oos.writeObject(serializableObject);
-        System.out.println("Sent over network");
-    } catch (IOException e){
-        e.printStackTrace();
+    public static void sendObject(Object serializableObject, Socket socket) {
+        try {
+            ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+            oos.writeObject(serializableObject);
+            System.out.println("Sent over network: " + serializableObject);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
 
-    public static Object readFile(Socket socket){
-        try (ObjectInputStream ois = new ObjectInputStream(socket.getInputStream())){
+    public static Object readObject(Socket socket) {
+        try {
+            ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
             return ois.readObject();
-        }   catch (IOException | ClassNotFoundException e){
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
         return null;
     }
-    }
+
+}
 

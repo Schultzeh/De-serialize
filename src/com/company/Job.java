@@ -30,4 +30,9 @@ public class Job implements Serializable {
     public void setSalary(long salary) {
         this.salary = salary;
     }
+
+    @Override
+    public String toString(){
+        return " Role: " + this.getRole() + " Salary: " + this.getSalary();
+    }
 }

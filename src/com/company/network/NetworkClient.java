@@ -10,7 +10,6 @@ public class NetworkClient {
     public static Socket clientSocket;
 
     public NetworkClient(){
-
         try {
             clientSocket = new Socket(HOST, PORT);
         }catch (IOException e) {

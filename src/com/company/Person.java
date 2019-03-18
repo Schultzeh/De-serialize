@@ -26,4 +26,9 @@ public class Person implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString(){
+        return "Name: " + this.getName() + this.job.toString();
+    }
 }
